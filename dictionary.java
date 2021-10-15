@@ -10,7 +10,7 @@ public class dictionary {
         private final dictionaryNode root;
 
         public dictionary() {
-            root = new dictionaryNode();   // root is empty
+            root = new dictionaryNode();   // initially  root is empty
         }
 
         private class dictionaryNode {
@@ -39,8 +39,7 @@ public class dictionary {
                         current = current.children[ch - 'a'];
                     }
                     current.isEnd = true;
-                } else if (ch == '\'') {  //--> to print special
-                    // System.out.print("Character: "+ word);
+                } else if (ch == '\'') {  //-->  special char case
                     if (current.children[26] == null) {
                         current.children[26] = new dictionaryNode();
                         current = current.children[26];
@@ -86,27 +85,25 @@ public class dictionary {
             File file = new File("C:\\Users\\ULtraman\\Downloads\\list.txt");
 
             BufferedReader br = new BufferedReader(new FileReader(file));
-            // Scanner vs Bufferreader
             String st;
 
             ArrayList<String> words = new ArrayList<>();
 
             while ((st = br.readLine()) != null){
-                words.add(st);   // adding
+                words.add(st);   // adding each string to words arrayList
             }
 
 
 
             for(String s: words){
-                // System.out.println(s);
-                trie.insert(s.toLowerCase());
+                trie.insert(s.toLowerCase());  // inserting each String and making them lowerCase for smooth run.
             }
 
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter a Word ");
         String userWord = scan.next();
         System.out.println("Result:"+"\t"+trie.found(userWord));
-//        System.out.println("Result:"+"\t"+trie.suggestedWord(userWord));
+
 
 
 
